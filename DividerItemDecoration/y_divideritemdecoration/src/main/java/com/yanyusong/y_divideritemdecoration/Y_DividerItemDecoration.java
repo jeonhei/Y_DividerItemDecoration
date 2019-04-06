@@ -12,6 +12,7 @@ import android.view.View;
 public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private Paint mPaint;
+    private Paint mBgPaint;
 
     private Context context;
 
@@ -19,6 +20,9 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
         this.context = context;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
+
+        mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBgPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
@@ -36,30 +40,30 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
                 int lineWidthPx = Dp2Px.convert(context, divider.getLeftSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getLeftSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getLeftSideLine().getEndPaddingDp());
-                drawChildLeftVertical(child, c, parent, divider.getLeftSideLine().getColor(), lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildLeftVertical(child, c, parent, divider.leftSideLine.color, divider.getLeftSideLine().bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
             }
             if (divider.getTopSideLine().isHave()) {
                 int lineWidthPx = Dp2Px.convert(context, divider.getTopSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getTopSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getTopSideLine().getEndPaddingDp());
-                drawChildTopHorizontal(child, c, parent, divider.topSideLine.getColor(), lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildTopHorizontal(child, c, parent, divider.topSideLine.getColor(), divider.topSideLine.bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
             }
             if (divider.getRightSideLine().isHave()) {
                 int lineWidthPx = Dp2Px.convert(context, divider.getRightSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getRightSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getRightSideLine().getEndPaddingDp());
-                drawChildRightVertical(child, c, parent, divider.getRightSideLine().getColor(), lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildRightVertical(child, c, parent, divider.getRightSideLine().getColor(), divider.rightSideLine.bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
             }
             if (divider.getBottomSideLine().isHave()) {
                 int lineWidthPx = Dp2Px.convert(context, divider.getBottomSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getBottomSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getBottomSideLine().getEndPaddingDp());
-                drawChildBottomHorizontal(child, c, parent, divider.getBottomSideLine().getColor(), lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildBottomHorizontal(child, c, parent, divider.getBottomSideLine().getColor(), divider.bottomSideLine.bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
             }
         }
     }
 
-    private void drawChildBottomHorizontal(View child, Canvas c, RecyclerView parent, @ColorInt int color, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
+    private void drawChildBottomHorizontal(View child, Canvas c, RecyclerView parent, @ColorInt int color, @ColorInt int bgColor, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
 
         int leftPadding = 0;
         int rightPadding = 0;
@@ -80,6 +84,15 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                 .getLayoutParams();
+
+        int bgLeft = child.getLeft() - params.leftMargin;
+        int bgRight = child.getRight() + params.rightMargin;
+        int bgTop = child.getBottom() + params.bottomMargin;
+        int bgBottom = bgTop + lineWidthPx;
+        mBgPaint.setColor(bgColor);
+
+        c.drawRect(bgLeft, bgTop, bgRight, bgBottom, mBgPaint);
+
         int left = child.getLeft() - params.leftMargin + leftPadding;
         int right = child.getRight() + params.rightMargin + rightPadding;
         int top = child.getBottom() + params.bottomMargin;
@@ -90,7 +103,7 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
     }
 
-    private void drawChildTopHorizontal(View child, Canvas c, RecyclerView parent, @ColorInt int color, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
+    private void drawChildTopHorizontal(View child, Canvas c, RecyclerView parent, @ColorInt int color, @ColorInt int bgColor, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
         int leftPadding = 0;
         int rightPadding = 0;
 
@@ -109,6 +122,15 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                 .getLayoutParams();
+
+        int bgLeft = child.getLeft() - params.leftMargin;
+        int bgRight = child.getRight() + params.rightMargin;
+        int bgTop = child.getBottom() + params.bottomMargin;
+        int bgBottom = bgTop + lineWidthPx;
+        mBgPaint.setColor(bgColor);
+
+        c.drawRect(bgLeft, bgTop, bgRight, bgBottom, mBgPaint);
+
         int left = child.getLeft() - params.leftMargin + leftPadding;
         int right = child.getRight() + params.rightMargin + rightPadding;
         int bottom = child.getTop() - params.topMargin;
@@ -119,7 +141,7 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
     }
 
-    private void drawChildLeftVertical(View child, Canvas c, RecyclerView parent, @ColorInt int color, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
+    private void drawChildLeftVertical(View child, Canvas c, RecyclerView parent, @ColorInt int color, @ColorInt int bgColor, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
         int topPadding = 0;
         int bottomPadding = 0;
 
@@ -138,6 +160,15 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                 .getLayoutParams();
+
+        int bgTop = child.getTop() - params.topMargin;
+        int bgBottom = child.getBottom() + params.bottomMargin;
+        int bgRight = child.getLeft() - params.leftMargin;
+        int bgLeft = bgRight - lineWidthPx;
+        mBgPaint.setColor(bgColor);
+
+        c.drawRect(bgLeft, bgTop, bgRight, bgBottom, mBgPaint);
+
         int top = child.getTop() - params.topMargin + topPadding;
         int bottom = child.getBottom() + params.bottomMargin + bottomPadding;
         int right = child.getLeft() - params.leftMargin;
@@ -148,7 +179,7 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
     }
 
-    private void drawChildRightVertical(View child, Canvas c, RecyclerView parent, @ColorInt int color, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
+    private void drawChildRightVertical(View child, Canvas c, RecyclerView parent, @ColorInt int color, @ColorInt int bgColor, int lineWidthPx, int startPaddingPx, int endPaddingPx) {
 
         int topPadding = 0;
         int bottomPadding = 0;
@@ -168,6 +199,15 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
 
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                 .getLayoutParams();
+
+        int bgTop = child.getTop() - params.topMargin;
+        int bgBottom = child.getBottom() + params.bottomMargin;
+        int bgRight = child.getLeft() - params.leftMargin;
+        int bgLeft = bgRight - lineWidthPx;
+        mBgPaint.setColor(bgColor);
+
+        c.drawRect(bgLeft, bgTop, bgRight, bgBottom, mBgPaint);
+
         int top = child.getTop() - params.topMargin + topPadding;
         int bottom = child.getBottom() + params.bottomMargin + bottomPadding;
         int left = child.getRight() + params.rightMargin;

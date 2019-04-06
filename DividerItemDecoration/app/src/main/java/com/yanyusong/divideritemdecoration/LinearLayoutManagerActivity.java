@@ -1,6 +1,7 @@
 package com.yanyusong.divideritemdecoration;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -68,7 +69,7 @@ public class LinearLayoutManagerActivity extends AppCompatActivity {
             switch (itemPosition) {
                 case 0:
                     divider = new Y_DividerBuilder()
-                            .setBottomSideLine(true, 0xffFF4081, 6, 0, 0)
+                            .setBottomSideLine(true, 0xffFF4081, Color.GREEN, 6, 20, 20)
                             .create();
                     break;
                 case 1:

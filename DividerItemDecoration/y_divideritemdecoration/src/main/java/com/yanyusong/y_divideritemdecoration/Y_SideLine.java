@@ -1,5 +1,6 @@
 package com.yanyusong.y_divideritemdecoration;
 
+import android.graphics.Color;
 import android.support.annotation.ColorInt;
 
 /**
@@ -14,6 +15,10 @@ public class Y_SideLine {
      **/
     public int color;
     /**
+     * background color
+     */
+    public int bgColor;
+    /**
      * 单位dp
      */
     public float widthDp;
@@ -25,8 +30,13 @@ public class Y_SideLine {
     public float endPaddingDp;
 
     public Y_SideLine(boolean isHave, @ColorInt int color, float widthDp, float startPaddingDp, float endPaddingDp) {
+         this(isHave, color, Color.TRANSPARENT, widthDp, startPaddingDp, endPaddingDp);
+    }
+
+    public Y_SideLine(boolean isHave, @ColorInt int color, @ColorInt int bgColor, float widthDp, float startPaddingDp, float endPaddingDp) {
         this.isHave = isHave;
         this.color = color;
+        this.bgColor = bgColor;
         this.widthDp = widthDp;
         this.startPaddingDp = startPaddingDp;
         this.endPaddingDp = endPaddingDp;
@@ -62,6 +72,14 @@ public class Y_SideLine {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public int getBgColor() {
+        return bgColor;
+    }
+
+    public void setBgColor(int bgColor) {
+        this.bgColor = bgColor;
     }
 
     public float getWidthDp() {
