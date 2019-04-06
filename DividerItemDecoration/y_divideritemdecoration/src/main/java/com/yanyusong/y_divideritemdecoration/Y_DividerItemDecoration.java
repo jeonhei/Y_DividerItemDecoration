@@ -40,25 +40,25 @@ public abstract class Y_DividerItemDecoration extends RecyclerView.ItemDecoratio
                 int lineWidthPx = Dp2Px.convert(context, divider.getLeftSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getLeftSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getLeftSideLine().getEndPaddingDp());
-                drawChildLeftVertical(child, c, parent, divider.leftSideLine.color, divider.getLeftSideLine().bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildLeftVertical(child, c, parent, divider.getLeftSideLine().getColor(), divider.getLeftSideLine().getBgColor(), lineWidthPx, startPaddingPx, endPaddingPx);
             }
             if (divider.getTopSideLine().isHave()) {
                 int lineWidthPx = Dp2Px.convert(context, divider.getTopSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getTopSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getTopSideLine().getEndPaddingDp());
-                drawChildTopHorizontal(child, c, parent, divider.topSideLine.getColor(), divider.topSideLine.bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildTopHorizontal(child, c, parent, divider.getTopSideLine().getColor(), divider.getTopSideLine().getBgColor(), lineWidthPx, startPaddingPx, endPaddingPx);
             }
             if (divider.getRightSideLine().isHave()) {
                 int lineWidthPx = Dp2Px.convert(context, divider.getRightSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getRightSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getRightSideLine().getEndPaddingDp());
-                drawChildRightVertical(child, c, parent, divider.getRightSideLine().getColor(), divider.rightSideLine.bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildRightVertical(child, c, parent, divider.getRightSideLine().getColor(), divider.getRightSideLine().getBgColor(), lineWidthPx, startPaddingPx, endPaddingPx);
             }
             if (divider.getBottomSideLine().isHave()) {
                 int lineWidthPx = Dp2Px.convert(context, divider.getBottomSideLine().getWidthDp());
                 int startPaddingPx = Dp2Px.convert(context, divider.getBottomSideLine().getStartPaddingDp());
                 int endPaddingPx = Dp2Px.convert(context, divider.getBottomSideLine().getEndPaddingDp());
-                drawChildBottomHorizontal(child, c, parent, divider.getBottomSideLine().getColor(), divider.bottomSideLine.bgColor, lineWidthPx, startPaddingPx, endPaddingPx);
+                drawChildBottomHorizontal(child, c, parent, divider.getBottomSideLine().getColor(), divider.getBottomSideLine().getBgColor(), lineWidthPx, startPaddingPx, endPaddingPx);
             }
         }
     }
